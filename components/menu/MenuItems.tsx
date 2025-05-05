@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PlusCircle, Info } from 'lucide-react';
+import { PlusCircle, Info, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { toast } from '@/components/ui/use-toast';
 import { MenuItem } from '@/types/menu';
