@@ -49,30 +49,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 container mx-auto px-4 mt-12">
-        {[
-          '/images/8878188_OHummpizza_Food_PizzaO\'Humm.jpg',
-          '/images/8878188_OHummpizza_Food_PizzaCanibale.jpg',
-          '/images/wings.png',
-          '/images/tenders.png',
-        ].map((src, i) => (
-          <motion.div
-            key={src}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-          >
-            <Image
-              src={src}
-              alt={`Produit ${i + 1}`}
-              width={300}
-              height={300}
-              className="rounded-3xl w-full h-48 object-cover"
-            />
-          </motion.div>
-        ))}
-      </div>
     </section>
   );
 }
