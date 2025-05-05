@@ -78,12 +78,12 @@ const MenuItems = ({ items, isLoading }: MenuItemsProps) => {
                 exit={{ opacity: 0, y: 20 }}
                 className="menu-item group"
               >
-                <div className="relative h-48 mb-4 overflow-hidden rounded-xl">
+                <div className="relative h-80 mb-4 overflow-hidden rounded-full" style={{ aspectRatio: '4/3' }}>
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-4 right-4 flex gap-2">
