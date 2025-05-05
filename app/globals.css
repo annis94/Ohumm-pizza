@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    --primary: 0 84% 43%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 0 84% 43%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 43%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 84% 43%;
+    
+    --radius: 1.5rem;
+  }
+ 
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 100%;
+    
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 0 84% 43%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 70%;
+    
+    --accent: 0 84% 43%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 43%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 84% 43%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair font-bold;
+  }
+}
+
+@layer components {
+  .hero-section {
+    @apply relative min-h-screen flex items-center;
+    background: linear-gradient(to right, white 50%, #f8f8f8 50%);
+  }
+  
+  .red-circle {
+    @apply absolute bg-primary rounded-full;
+    z-index: 1;
+  }
+  
+  .menu-card {
+    @apply relative overflow-hidden bg-card rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border/50;
+  }
+  
+  .menu-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-6;
+  }
+  
+  .section-subtitle {
+    @apply text-xl text-muted-foreground mb-8;
+  }
+  
+  .btn-primary {
+    @apply px-8 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors;
+  }
+  
+  .category-card {
+    @apply relative p-6 bg-black text-white rounded-3xl overflow-hidden;
+    min-height: 200px;
+  }
+  
+  .category-card::after {
+    content: '';
+    @apply absolute top-0 right-0 w-24 h-24 bg-primary rounded-full -translate-y-1/2 translate-x-1/2;
+  }
+}
+
+.delivery-section {
+  @apply relative py-20;
+  background: linear-gradient(to right, #f8f8f8 60%, white 40%);
+}
+
+.image-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.image-grid img {
+  @apply rounded-3xl w-full h-48 object-cover;
+}
