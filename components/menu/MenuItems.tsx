@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PlusCircle, Info, X } from 'lucide-react';
+import { PlusCircle, Info, X, Phone } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { toast } from '@/components/ui/use-toast';
 import { MenuItem } from '@/types/menu';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 interface MenuItemsProps {
   items: MenuItem[];
@@ -15,170 +17,114 @@ interface MenuItemsProps {
 
 const MenuItems = ({ items, isLoading }: MenuItemsProps) => {
   const { addToCart } = useCart();
+  const { toast } = useToast();
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
   
   const handleAddToCart = (item: MenuItem) => {
-    addToCart({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      quantity: 1,
-      image: item.image,
-    });
-    
+    addToCart(item);
     toast({
       title: "Ajouté au panier",
       description: `${item.name} a été ajouté à votre panier`,
-      duration: 3000,
     });
   };
+
+  const handleOrder = () => {
+    setShowPhoneModal(true);
+  };
   
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[...Array(6)].map((_, index) => (
+          <div key={index} className="animate-pulse">
+            <div className="aspect-video bg-muted rounded-lg mb-4" />
+            <div className="h-6 bg-muted rounded w-3/4 mb-2" />
+            <div className="h-4 bg-muted rounded w-1/2" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div>
-      <AnimatePresence mode="wait">
-        {isLoading ? (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {items.map((item) => (
           <motion.div
-            key="loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {[...Array(6)].map((_, index) => (
-              <div 
-                key={index} 
-                className="menu-item animate-pulse"
-              >
-                <div className="h-48 bg-muted rounded-xl mb-4"></div>
-                <div className="h-6 bg-muted rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-muted rounded w-1/2 mb-4"></div>
-                <div className="h-4 bg-muted rounded w-full mb-2"></div>
-                <div className="h-4 bg-muted rounded w-full mb-4"></div>
-                <div className="flex justify-between items-center">
-                  <div className="h-6 bg-muted rounded w-16"></div>
-                  <div className="h-10 bg-muted rounded-full w-10"></div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {items.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="menu-item group"
-              >
-                <div className="relative h-80 mb-4 overflow-hidden rounded-full" style={{ aspectRatio: '4/3' }}>
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute bottom-4 right-4 flex gap-2">
-                    <button
-                      onClick={() => setSelectedItem(item)}
-                      className="bg-card/90 hover:bg-card rounded-full p-2 text-foreground transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-                      aria-label={`Voir les détails de ${item.name}`}
-                    >
-                      <Info size={20} />
-                    </button>
-                    <button
-                      onClick={() => handleAddToCart(item)}
-                      className="bg-primary rounded-full p-2 text-white transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-                      aria-label={`Ajouter ${item.name} au panier`}
-                    >
-                      <PlusCircle size={20} />
-                    </button>
-                  </div>
-                </div>
-                
-                <h3 className="text-lg font-bold mb-1">{item.name}</h3>
-                <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{item.description}</p>
-                
-                <div className="mt-auto flex justify-between items-center">
-                  <span className="font-bold text-primary">{item.price.toFixed(2).replace('.', ',')} €</span>
-                  <button
-                    onClick={() => handleAddToCart(item)}
-                    className="md:hidden text-primary hover:text-primary/80"
-                    aria-label={`Ajouter ${item.name} au panier`}
-                  >
-                    <PlusCircle size={20} />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Item Detail Modal */}
-      {selectedItem && (
-        <div
-          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedItem(null)}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="bg-card max-w-lg w-full rounded-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
+            className="group relative overflow-hidden rounded-lg bg-card shadow-md hover:shadow-lg transition-shadow"
           >
-            <div className="relative h-56">
-              <Image
-                src={selectedItem.image}
-                alt={selectedItem.name}
-                fill
-                className="object-cover"
+            <div className="aspect-video relative overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity w-full h-full" />
+            </div>
+            <div className="p-4">
+              <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+              <p className="text-muted-foreground mb-4">{item.description}</p>
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-bold">{item.price.toFixed(2)} €</span>
+                <Button
+                  onClick={() => setShowPhoneModal(true)}
+                  className="bg-primary hover:bg-primary/90"
+                >
+                  Commander
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      {/* Phone Modal */}
+      <AnimatePresence>
+        {showPhoneModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowPhoneModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card rounded-lg p-6 max-w-sm w-full mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
-                onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-1 hover:bg-black/70"
-                aria-label="Fermer"
+                onClick={() => setShowPhoneModal(false)}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
               >
                 <X size={20} />
               </button>
-            </div>
-            
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">{selectedItem.name}</h3>
-              <p className="text-muted-foreground mb-4">{selectedItem.description}</p>
-              
-              {selectedItem.ingredients && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-2">Ingrédients :</h4>
-                  <p className="text-muted-foreground">{selectedItem.ingredients.join(', ')}</p>
-                </div>
-              )}
-              
-              <div className="flex justify-between items-center mt-6">
-                <span className="text-xl font-bold text-primary">{selectedItem.price.toFixed(2).replace('.', ',')} €</span>
-                <button
-                  onClick={() => {
-                    handleAddToCart(selectedItem);
-                    setSelectedItem(null);
-                  }}
-                  className="btn-pizza py-2 px-4"
+              <div className="text-center">
+                <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-2">Commander par téléphone</h3>
+                <p className="text-muted-foreground mb-4">
+                  Appelez-nous pour passer votre commande
+                </p>
+                <a
+                  href="tel:+33123456789"
+                  className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors"
                 >
-                  Ajouter au panier
-                </button>
+                  01 23 45 67 89
+                </a>
+                <p className="text-sm text-muted-foreground mt-4">
+                  Ou fermez cette fenêtre pour continuer à parcourir le menu
+                </p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };

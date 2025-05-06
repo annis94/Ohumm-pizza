@@ -25,7 +25,7 @@ export default function MenuPage() {
   }, [selectedCategory]);
 
   return (
-    <div className="container mx-auto px-4 py-12 md:py-20">
+    <div className="container mx-auto px-4 py-12 md:py-20 mt-20">
       <MenuHeader />
       <MenuCategories 
         categories={categories} 

@@ -3,19 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCart } from '@/context/CartContext';
-import { Pizza, Phone, Menu, X, ShoppingBag } from 'lucide-react';
+import { Pizza, Phone, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Cart from '@/components/cart/Cart';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const pathname = usePathname();
-  const { cart } = useCart();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -30,8 +26,6 @@ const Header = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
-  
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
   
   const navLinks = [
     { name: 'Accueil', path: '/' },
@@ -50,8 +44,7 @@ const Header = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Pizza className="h-8 w-8 text-primary" />
-          <span className="font-playfair font-bold text-xl md:text-2xl">O'HUMM PIZZA</span>
+          <img src="/logo/logo.png" alt="O'Humm Pizza" className="h-12 w-auto" />
         </Link>
         
         {/* Desktop Navigation */}
@@ -76,24 +69,6 @@ const Header = () => {
             <Phone size={18} />
             <span className="font-medium">01 23 45 67 89</span>
           </Link>
-          
-          <Button
-            onClick={() => setCartOpen(true)}
-            variant="outline"
-            className="relative"
-            aria-label="Voir le panier"
-          >
-            <ShoppingBag size={20} />
-            {totalItems > 0 && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center"
-              >
-                {totalItems}
-              </motion.span>
-            )}
-          </Button>
           
           <Button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -137,9 +112,6 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      {/* Cart Sidebar */}
-      <Cart isOpen={cartOpen} setIsOpen={setCartOpen} />
     </header>
   );
 };
