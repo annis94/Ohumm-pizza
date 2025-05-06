@@ -10,12 +10,13 @@ import { MenuItem } from '@/types/menu';
 interface MenuItemsProps {
   items: MenuItem[];
   category: string;
+  isLoading: boolean;
 }
 
-export default function MenuItems({ items, category }: MenuItemsProps) {
+export default function MenuItems({ items, category, isLoading }: MenuItemsProps) {
   const [showPhoneModal, setShowPhoneModal] = useState(false);
 
-  if (!items.length) {
+  if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {[...Array(6)].map((_, index) => (
@@ -25,6 +26,14 @@ export default function MenuItems({ items, category }: MenuItemsProps) {
             <div className="h-4 bg-muted rounded w-1/2" />
           </div>
         ))}
+      </div>
+    );
+  }
+
+  if (!items.length) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">Aucun élément trouvé dans cette catégorie.</p>
       </div>
     );
   }
