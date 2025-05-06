@@ -34,7 +34,8 @@ export default function MenuPage() {
       />
       <MenuItems 
         items={filteredItems} 
-        isLoading={isLoading} 
+        isLoading={isLoading}
+        category={selectedCategory}
       />
     </div>
   );
