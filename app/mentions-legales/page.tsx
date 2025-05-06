@@ -13,8 +13,7 @@ export default function MentionsLegalesPage() {
             France
           </p>
           <p>
-            Téléphone : 01 23 45 67 89<br />
-            Email : contact@ohumm-pizza.fr
+            Téléphone : 01 23 45 67 89
           </p>
         </section>
 

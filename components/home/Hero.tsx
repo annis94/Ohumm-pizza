@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="py-12 sm:py-20">
+    <section className="pt-28 pb-12 sm:pt-24 sm:pb-20">
       <div className="container mx-auto px-4">
         <div className="relative h-[500px] sm:h-[600px] rounded-2xl overflow-hidden">
           {/* Image de fond */}
