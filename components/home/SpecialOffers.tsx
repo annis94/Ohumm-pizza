@@ -89,20 +89,20 @@ export default function SpecialOffers() {
                 <div className="relative z-10 bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl">
                   <h2 className="text-4xl sm:text-5xl font-bold mb-6">
                     Pas que des pizzas,
-                    <span className="block text-primary mt-2">promis</span>
+                    <span className="block bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent mt-2">promis</span>
                   </h2>
                   <p className="text-lg text-muted-foreground mb-8">
                     Oui, nos pizzas déchirent. Mais si t'as envie d'autre chose, nos tenders et wings sont là pour te régaler. Bien croustillants, bien assaisonnés ... parfaits pour changer, ou juste pour te faire plaisir.
                   </p>
                   <Link
                     href="/menu"
-                    className="inline-flex items-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg shadow-lg hover:bg-primary/90 transition-all hover:shadow-xl hover:translate-y-[-2px]"
+                    className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-primary to-pink-500 text-primary-foreground font-semibold text-lg shadow-lg hover:from-pink-500 hover:to-primary transition-all hover:shadow-xl hover:translate-y-[-2px]"
                   >
                     À toi de voir
                   </Link>
                 </div>
                 {/* Élément décoratif */}
-                <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+                <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-r from-primary/10 to-pink-500/10 rounded-full blur-xl"></div>
               </motion.div>
             </div>
           </div>

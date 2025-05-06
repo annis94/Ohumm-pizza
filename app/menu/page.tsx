@@ -93,7 +93,7 @@ export default function MenuPage() {
           >
             {/* Badge angle */}
             {pizza.badge && (
-              <div className="absolute -top-3 -left-3 z-20 bg-gradient-to-r from-pink-500 to-orange-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg rotate-[-12deg]">
+              <div className="absolute -top-3 -left-3 z-20 bg-gradient-to-r from-primary to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg rotate-[-12deg]">
                 {pizza.badge}
               </div>
             )}
@@ -110,7 +110,7 @@ export default function MenuPage() {
             <div className="w-full flex-1 flex flex-col items-center bg-white/80 rounded-3xl pt-16 pb-6 px-6 mt-[-2rem] shadow-inner backdrop-blur-xl relative">
               {/* Prix néon */}
               <div className="absolute -top-7 right-6 z-20">
-                <span className="inline-block w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-orange-400 text-white text-xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white">
+                <span className="inline-block w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-primary to-pink-500 text-white text-xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white">
                   {pizza.price}
                 </span>
               </div>

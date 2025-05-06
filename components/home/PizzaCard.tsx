@@ -17,7 +17,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({ image, name, description, price, 
     <div className="absolute top-2 left-1/2 -translate-x-1/2 z-30 text-xs font-bold text-pink-700 bg-white px-3 py-1 rounded-full shadow">Nouveau design !</div>
     {/* Badge angle */}
     {badge && (
-      <div className="absolute -top-3 -left-3 z-20 bg-gradient-to-r from-pink-500 to-orange-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg rotate-[-12deg]">
+      <div className="absolute -top-3 -left-3 z-20 bg-gradient-to-r from-primary to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg rotate-[-12deg]">
         {badge}
       </div>
     )}
@@ -35,7 +35,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({ image, name, description, price, 
     <div className="w-full flex-1 flex flex-col items-center bg-white/80 rounded-3xl pt-16 pb-6 px-6 mt-[-2rem] shadow-inner backdrop-blur-xl relative">
       {/* Prix néon */}
       <div className="absolute -top-7 right-6 z-20">
-        <span className="inline-block w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-orange-400 text-white text-xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white">
+        <span className="inline-block w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-primary to-pink-500 text-white text-xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white">
           {price}
         </span>
       </div>

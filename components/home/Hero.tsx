@@ -31,7 +31,7 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold mb-4 md:mb-6 text-white">
                 Pizzas faites maison
                 <br />
-                <span className="text-primary">saveurs vraies</span>
+                <span className="bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">saveurs vraies</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-xl mx-auto sm:mx-0">
                 Une pâte artisanale, des ingrédients soigneusement sélectionnés,
@@ -39,7 +39,7 @@ export default function Hero() {
               </p>
               <Link
                 href="/menu"
-                className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base sm:text-lg shadow-lg hover:bg-primary/90 transition-all hover:shadow-xl"
+                className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-primary to-pink-500 text-primary-foreground font-semibold text-base sm:text-lg shadow-lg hover:from-pink-500 hover:to-primary transition-all hover:shadow-xl"
               >
                 Découvrir le menu
               </Link>

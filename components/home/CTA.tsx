@@ -23,7 +23,7 @@ const CTA = () => {
       className="py-16 md:py-24"
     >
       <div className="container mx-auto px-4">
-        <div className="relative overflow-hidden rounded-3xl bg-primary">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-pink-500">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-white translate-x-[-30%] translate-y-[-50%]" />

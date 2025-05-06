@@ -32,12 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${playfair.variable} ${poppins.variable}`}>
-      <body className="min-h-screen flex flex-col font-body bg-background">
+    <html lang="fr" suppressHydrationWarning>
+      <body className={`${poppins.variable} ${playfair.variable} font-poppins min-h-screen bg-gradient-to-br from-[#fff7ed] via-[#fff] to-[#ffe4e6]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
+          disableTransitionOnChange
         >
           <CartProvider>
             <Header />

@@ -55,7 +55,7 @@ const Header = () => {
               href={link.path}
               className={cn(
                 "font-medium text-lg transition-colors hover:text-primary",
-                isActive(link.path) ? "text-primary font-semibold" : "text-foreground"
+                isActive(link.path) ? "bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent font-semibold" : "text-foreground"
               )}
             >
               {link.name}

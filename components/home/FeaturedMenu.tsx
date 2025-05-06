@@ -106,7 +106,7 @@ const FeaturedMenu = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <button
                   onClick={() => handleAddToCart(item)}
-                  className="absolute bottom-4 right-4 bg-primary rounded-full p-2 text-white transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
+                  className="absolute bottom-4 right-4 bg-gradient-to-r from-primary to-pink-500 rounded-full p-2 text-white transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
                   aria-label={`Ajouter ${item.name} au panier`}
                 >
                   <PlusCircle size={24} />
@@ -116,7 +116,7 @@ const FeaturedMenu = () => {
               <h3 className="text-lg font-bold mb-1">{item.name}</h3>
               <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{item.description}</p>
               <div className="mt-auto flex justify-between items-center">
-                <span className="font-bold text-primary">{item.price.toFixed(2).replace('.', ',')} €</span>
+                <span className="font-bold bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">{item.price.toFixed(2).replace('.', ',')} €</span>
                 <span className="text-xs uppercase font-medium text-muted-foreground">{item.category}</span>
               </div>
             </motion.div>

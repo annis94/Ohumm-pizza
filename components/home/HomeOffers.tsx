@@ -5,7 +5,7 @@ const offers = [
   {
     title: 'Nos offres',
     subtitle: 'à emporter',
-    badgeColor: 'from-orange-400 to-yellow-400',
+    badgeColor: 'from-primary to-pink-500',
     solo: {
       label: 'MENU SOLO',
       desc: '1 pizza senior au choix\n+ 1 canette\n+ 1 dessert au choix',
@@ -16,12 +16,12 @@ const offers = [
       desc: '3 pizzas senior au choix\n+ 1 bouteille Mecca Cola 1.5L',
       price: '23.90€',
     },
-    icon: <FaShoppingBag size={32} className="text-orange-500" />,
+    icon: <FaShoppingBag size={32} className="text-primary" />,
   },
   {
     title: 'Nos offres',
     subtitle: 'en livraison',
-    badgeColor: 'from-blue-500 to-cyan-400',
+    badgeColor: 'from-primary to-pink-500',
     solo: {
       label: 'MENU SOLO',
       desc: '1 pizza senior au choix\n+ 1 canette\n+ 1 dessert au choix',
@@ -32,7 +32,7 @@ const offers = [
       desc: '3 pizzas senior au choix\n+ 1 bouteille de Mecca Cola 1.5L',
       price: '25.90€',
     },
-    icon: <FaMotorcycle size={32} className="text-blue-500" />,
+    icon: <FaMotorcycle size={32} className="text-primary" />,
   },
 ];
 
@@ -41,7 +41,7 @@ const HomeOffers = () => (
     <div className="absolute inset-0 pointer-events-none select-none opacity-30" style={{backgroundImage: 'url(/images/8878188_OHummpizza_Hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
     <div className="relative z-10 max-w-4xl mx-auto px-2">
       <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-10 drop-shadow-lg">
-        <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Nos offres spéciales</span>
+        <span className="bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">Nos offres spéciales</span>
       </h2>
       <div className="flex flex-col md:flex-row gap-8">
         {offers.map((offer, idx) => (
@@ -54,7 +54,7 @@ const HomeOffers = () => (
               <div className={`mb-3 inline-block px-4 py-1 rounded-full text-white text-sm font-bold bg-gradient-to-r ${offer.badgeColor} shadow-md`}>
                 {offer.subtitle}
               </div>
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg mb-2 border-4 border-white group-hover:shadow-orange-200 group-hover:shadow-md transition-all">
+              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg mb-2 border-4 border-white group-hover:shadow-primary/20 group-hover:shadow-md transition-all">
                 {offer.icon}
               </div>
             </div>
@@ -62,7 +62,7 @@ const HomeOffers = () => (
               <div className="font-bold text-lg mb-1 text-center tracking-wide text-gray-800 drop-shadow-sm">{offer.solo.label}</div>
               <div className="whitespace-pre-line text-sm mb-1 text-center text-gray-700">{offer.solo.desc}</div>
               <div className="text-center mt-2">
-                <span className="inline-block text-2xl font-extrabold text-white px-4 py-1 rounded-xl bg-gradient-to-r from-pink-500 to-orange-400 shadow-lg ring-2 ring-white/60 group-hover:from-orange-400 group-hover:to-pink-500 group-hover:shadow-pink-200 transition-all">
+                <span className="inline-block text-2xl font-extrabold text-white px-4 py-1 rounded-xl bg-gradient-to-r from-primary to-pink-500 shadow-lg ring-2 ring-white/60 group-hover:from-pink-500 group-hover:to-primary group-hover:shadow-pink-200 transition-all">
                   {offer.solo.price}
                 </span>
               </div>
@@ -71,7 +71,7 @@ const HomeOffers = () => (
               <div className="font-bold text-lg mb-1 text-center tracking-wide text-gray-800 drop-shadow-sm">{offer.trio.label}</div>
               <div className="whitespace-pre-line text-sm mb-1 text-center text-gray-700">{offer.trio.desc}</div>
               <div className="text-center mt-2">
-                <span className="inline-block text-2xl font-extrabold text-white px-4 py-1 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-400 shadow-lg ring-2 ring-white/60 group-hover:from-blue-400 group-hover:to-cyan-500 group-hover:shadow-cyan-200 transition-all">
+                <span className="inline-block text-2xl font-extrabold text-white px-4 py-1 rounded-xl bg-gradient-to-r from-primary to-pink-500 shadow-lg ring-2 ring-white/60 group-hover:from-pink-500 group-hover:to-primary group-hover:shadow-pink-200 transition-all">
                   {offer.trio.price}
                 </span>
               </div>
