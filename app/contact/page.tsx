@@ -5,7 +5,12 @@ import { Phone, MapPin, Clock } from 'lucide-react';
 export default function ContactPage() {
   return (
     <main className="container mx-auto px-4 py-10 mt-20">
-      <h1 className="text-3xl font-bold mb-12 text-center">Contactez-nous</h1>
+      <div className="text-center mb-16">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent whitespace-nowrap">
+          Contactez-nous
+        </h1>
+        <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
       
       <div className="max-w-3xl mx-auto bg-card rounded-lg shadow-lg p-8">
         <div className="space-y-10">

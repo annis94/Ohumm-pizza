@@ -8,9 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Restaurant Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Pizza className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-xl">O'HUMM PIZZA</span>
+            <div className="mb-4">
+              <img src="/logo/logo.png" alt="O'HUMM PIZZA" className="h-12 w-auto mx-auto" />
             </div>
             <p className="text-muted-foreground mb-5">
               Des pizzas artisanales cuites au feu de bois, préparées avec des ingrédients frais et de qualité.
@@ -110,7 +109,7 @@ const Footer = () => {
         
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} O'HUMM PIZZA | Tous droits réservés
+            © 2025 O'HUMM PIZZA | Réalisé par Anis Moulfi. Tous droits réservés
           </p>
         </div>
       </div>

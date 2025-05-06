@@ -20,10 +20,10 @@ const AvisGoogle = () => {
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="w-full max-w-full overflow-hidden">
       {/* Widget Elfsight pour les avis Google */}
       <div
-        className="elfsight-app-d5d9de0a-d7b2-40dd-bbb9-46ef97ce01e4"
+        className="elfsight-app-d5d9de0a-d7b2-40dd-bbb9-46ef97ce01e4 w-full"
         data-elfsight-app-lazy
       ></div>
     </div>
