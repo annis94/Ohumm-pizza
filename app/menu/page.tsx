@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X, Phone, Clock } from "lucide-react";
 
 interface MenuItem {
   id: string;
@@ -28,6 +28,8 @@ export default function MenuPage() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -60,6 +62,11 @@ export default function MenuPage() {
 
   // Filtrage par catégorie
   const filteredItems = menuItems.filter((item) => item.category === selectedCategory);
+
+  const handleOrderClick = (item: MenuItem) => {
+    setSelectedItem(item);
+    setShowOrderModal(true);
+  };
 
   return (
     <div className="min-h-screen w-full pt-24 md:pt-32 pb-8 md:pb-24 px-4 bg-gradient-to-br from-[#fff7ed] via-[#fff] to-[#ffe4e6]">
@@ -130,7 +137,7 @@ export default function MenuPage() {
               <div className="w-full flex-1 flex flex-col items-center bg-white/80 rounded-3xl pt-14 md:pt-20 pb-6 md:pb-8 px-6 md:px-8 mt-[-1rem] md:mt-[-2rem] shadow-inner backdrop-blur-xl relative">
                 {/* Prix néon */}
                 <div className="absolute -top-5 md:-top-8 right-5 md:right-8 z-20">
-                  <span className="inline-block w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-primary to-pink-500 text-white text-lg md:text-2xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white">
+                  <span className="inline-block w-14 h-14 md:w-20 md:h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-primary to-pink-500 text-white text-base md:text-xl font-extrabold shadow-xl ring-4 ring-white/60 animate-pulse border-4 border-white px-1">
                     {item.price}
                   </span>
                 </div>
@@ -141,6 +148,7 @@ export default function MenuPage() {
                   {item.description}
                 </p>
                 <button
+                  onClick={() => handleOrderClick(item)}
                   className="mt-4 md:mt-6 inline-flex items-center gap-2 justify-center whitespace-nowrap rounded-full text-sm md:text-base font-semibold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-primary to-pink-500 text-primary-foreground hover:from-pink-500 hover:to-primary shadow-lg px-6 md:px-8 py-3 md:py-4 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:scale-105"
                 >
                   <ShoppingCart size={18} className="md:w-5 md:h-5" /> Commander
@@ -148,6 +156,66 @@ export default function MenuPage() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Modal de commande */}
+      {showOrderModal && selectedItem && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 relative">
+            {/* Bouton fermer */}
+            <button
+              onClick={() => setShowOrderModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Contenu */}
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-4 bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent">
+                Commander {selectedItem.name}
+              </h3>
+              
+              <div className="space-y-6">
+                {/* Prix */}
+                <div className="text-3xl font-bold text-primary">
+                  {selectedItem.price}
+                </div>
+
+                {/* Horaires de livraison */}
+                <div className="bg-gray-50 rounded-2xl p-4">
+                  <div className="flex items-center gap-3 text-gray-600 mb-2">
+                    <Clock size={20} />
+                    <span className="font-semibold">Horaires de livraison :</span>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Du lundi au dimanche<br />
+                    De 11h30 à 14h30 et de 18h30 à 22h30
+                  </p>
+                </div>
+
+                {/* Numéro de téléphone */}
+                <div className="bg-primary/10 rounded-2xl p-4">
+                  <div className="flex items-center gap-3 text-primary mb-2">
+                    <Phone size={20} />
+                    <span className="font-semibold">Commander par téléphone :</span>
+                  </div>
+                  <a
+                    href="tel:0123456789"
+                    className="text-2xl font-bold text-primary hover:text-pink-500 transition-colors"
+                  >
+                    01 23 45 67 89
+                  </a>
+                </div>
+
+                {/* Message */}
+                <p className="text-sm text-gray-500">
+                  Appelez-nous pour passer votre commande. Nous vous livrons dans un rayon de 5km.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
