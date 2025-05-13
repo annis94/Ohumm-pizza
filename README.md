@@ -2,13 +2,6 @@
 
 Ce projet est une application web moderne et responsive pour la pizzeria "O'Humm Pizza", développée avec Next.js (App Router), TypeScript, et Tailwind CSS. Elle permet aux utilisateurs de consulter le menu, de voir les avis clients, de contacter l'établissement et simule un processus de commande en ligne.
 
-**(Optionnel mais recommandé) :**
-> **Lien vers la démo live :** [https://votre-demo-live.com](https://votre-demo-live.com)
->
-> **Screenshots :**
-> ![Screenshot Accueil](lien_vers_screenshot_accueil.png)
-> ![Screenshot Menu](lien_vers_screenshot_menu.png)
-> ![Screenshot Checkout](lien_vers_screenshot_checkout.png)
 
 ## Table des Matières
 
