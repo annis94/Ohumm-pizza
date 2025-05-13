@@ -1,173 +1,175 @@
-# O'Humm Pizza - Site Web de Commande en Ligne
+# O'Humm Pizza - Site Web de Pizzeria (Next.js & TypeScript)
 
-Ce projet est un site web moderne et réactif pour la pizzeria "O'Humm Pizza". Il permet aux clients de consulter le menu, de découvrir les offres, de lire les avis, de contacter la pizzeria et potentiellement de passer des commandes en ligne (la fonctionnalité de commande actuelle est une maquette front-end).
+Ce projet est une application web moderne et responsive pour la pizzeria "O'Humm Pizza", développée avec Next.js (App Router), TypeScript, et Tailwind CSS. Elle permet aux utilisateurs de consulter le menu, de voir les avis clients, de contacter l'établissement et simule un processus de commande en ligne.
+
+**(Optionnel mais recommandé) :**
+> **Lien vers la démo live :** [https://votre-demo-live.com](https://votre-demo-live.com)
+>
+> **Screenshots :**
+> ![Screenshot Accueil](lien_vers_screenshot_accueil.png)
+> ![Screenshot Menu](lien_vers_screenshot_menu.png)
+> ![Screenshot Checkout](lien_vers_screenshot_checkout.png)
 
 ## Table des Matières
 
-1.  [Fonctionnalités Principales](#fonctionnalités-principales)
-2.  [Technologies Utilisées](#technologies-utilisées)
+1.  [Fonctionnalités Clés](#fonctionnalités-clés)
+2.  [Stack Technique](#stack-technique)
 3.  [Structure du Projet](#structure-du-projet)
 4.  [Pages Principales (Routes)](#pages-principales-routes)
-5.  [Composants Clés](#composants-clés)
-6.  [Installation et Lancement](#installation-et-lancement)
-7.  [Déploiement](#déploiement)
-8.  [Points d'Attention & Améliorations Possibles](#points-dattention--améliorations-possibles)
-9.  [Pour le Client](#pour-le-client)
+5.  [Composants Notables](#composants-notables)
+6.  [Prérequis](#prérequis)
+7.  [Installation](#installation)
+8.  [Lancement du Projet](#lancement-du-projet)
+9.  [Variables d'Environnement](#variables-denvironnement)
+10. [Déploiement](#déploiement)
+11. [Limitations Actuelles & Améliorations Possibles](#limitations-actuelles--améliorations-possibles)
 
-## Fonctionnalités Principales
+## Fonctionnalités Clés
 
-*   **Page d'Accueil Dynamique (`/`)**: Présentation de la pizzeria, offres spéciales, catégories de produits, informations de livraison et appel à l'action.
+*   **Page d'Accueil Dynamique (`/`)**: Présentation de la pizzeria, offres spéciales, catégories de produits, informations de livraison et CTA.
 *   **Menu Interactif (`/menu`)**:
-    *   Affichage des produits par catégories (Pizzas, Pizzas signatures, Calzones, etc.).
-    *   Cartes produits détaillées avec image, nom, description et prix.
-    *   Possibilité d'ajouter des produits au panier (fonctionnalité de panier simulée ou contextuelle).
-*   **Panier d'Achat (via `CartContext` et `components/cart/Cart.tsx`)**:
-    *   Affichage des articles ajoutés.
-    *   Modification des quantités.
-    *   Suppression d'articles.
-    *   Calcul du sous-total.
-*   **Processus de Commande (`/checkout`)**:
-    *   Formulaire de saisie des informations personnelles et de livraison.
-    *   Choix du mode de réception (livraison, à emporter).
-    *   Choix du mode de paiement (simulé).
+    *   Filtrage des produits par catégories.
+    *   Affichage détaillé des produits (image, nom, description, prix).
+    *   Simulation d'ajout au panier.
+*   **Panier d'Achat (via `CartContext`)**:
+    *   Affichage des articles ajoutés dans un panneau latéral.
+    *   Modification des quantités et suppression d'articles.
+    *   Calcul dynamique du sous-total.
+    *   Persistance du panier dans `localStorage`.
+*   **Processus de Commande Simulé (`/checkout`)**:
+    *   Formulaire pour les informations personnelles et de livraison.
+    *   Choix du mode de réception (livraison / à emporter).
+    *   Choix du mode de paiement (maquetté).
     *   Récapitulatif de la commande.
-    *   Validation du formulaire avec Zod et React Hook Form.
+    *   Validation des champs avec Zod et React Hook Form.
     *   Redirection si le panier est vide.
-*   **Avis Clients (`/avis`)**: Intégration des avis Google via un widget Elfsight.
+*   **Avis Clients (`/avis`)**: Intégration d'un widget Elfsight pour les avis Google.
 *   **Page de Contact (`/contact`)**:
-    *   Affichage des coordonnées (adresse, téléphone, horaires).
+    *   Coordonnées (adresse, téléphone, horaires).
     *   Carte Google Maps intégrée.
-    *   (Formulaire de contact présent dans `components/contact/ContactForm.tsx` mais non utilisé sur la page `/contact/page.tsx` directement, pourrait être une future intégration).
-*   **Mentions Légales (`/mentions-legales`)**: Page statique avec les informations légales requises.
-*   **Design Réactif**: Adapté pour une consultation sur ordinateurs, tablettes et mobiles.
-*   **Thème Clair/Sombre**: Support de la thématique grâce à `ThemeProvider`.
-*   **Notifications Toast**: Pour les actions utilisateur (ex: confirmation de commande).
+*   **Mentions Légales (`/mentions-legales`)**: Page statique.
+*   **Design Responsive**: Adaptabilité sur desktop, tablette et mobile.
+*   **Thème Clair/Sombre**: Supporté via `ThemeProvider` (next-themes).
+*   **Notifications Toast**: Pour les confirmations d'actions (ex: commande simulée).
 
-## Technologies Utilisées
+## Stack Technique
 
-*   **Framework Frontend**: Next.js 13+ (avec App Router)
+*   **Framework**: Next.js 13+ (App Router)
 *   **Langage**: TypeScript
 *   **Styling**: Tailwind CSS
-*   **Composants UI**: Shadcn/ui (bibliothèque de composants réutilisables construits avec Radix UI et Tailwind CSS)
+*   **Composants UI**: Shadcn/ui (basé sur Radix UI & Tailwind CSS)
 *   **Animations**: Framer Motion
 *   **Gestion de Formulaires**: React Hook Form
 *   **Validation de Schéma**: Zod
-*   **Gestion d'État (Panier)**: React Context API (`CartContext`)
+*   **Gestion d'État (Panier)**: React Context API
 *   **Icônes**: Lucide React
-*   **Avis Clients**: Intégration Elfsight pour les avis Google
 *   **Polices**: Playfair Display, Poppins (via `next/font`)
-*   **Déploiement**: Vercel (mentionné dans les mentions légales)
+*   **Linting/Formatting**: ESLint, Prettier (implicite avec la stack Shadcn/ui)
 
 ## Structure du Projet
 
 
 o-humm-pizza/
-├── app/ # Pages et routes (Next.js App Router)
+├── app/ # Routes et layouts (Next.js App Router)
 │ ├── (nom_page)/page.tsx # Fichier principal de chaque route
-│ ├── layout.tsx # Layout principal de l'application
-│ └── globals.css # Styles globaux et configuration Tailwind
+│ ├── layout.tsx # Layout racine de l'application
+│ └── globals.css # Styles globaux et directives Tailwind
 ├── components/ # Composants React réutilisables
-│ ├── ui/ # Composants Shadcn/ui (button, card, input, etc.)
-│ ├── cart/ # Composants liés au panier (Cart.tsx)
-│ ├── checkout/ # Composants pour la page de commande (CheckoutForm.tsx, OrderSummary.tsx)
-│ ├── contact/ # Composants pour la page contact (ContactForm.tsx, ContactInfo.tsx, Map.tsx)
-│ ├── home/ # Composants spécifiques à la page d'accueil (Hero.tsx, FeaturedMenu.tsx, etc.)
-│ ├── layout/ # Composants de structure (Header.tsx, Footer.tsx)
-│ ├── menu/ # Composants pour la page menu (MenuCategories.tsx, MenuItems.tsx, etc.)
-│ └── reviews/ # Composants pour les avis (AvisGoogle.tsx)
-├── context/ # Contexte React (ex: CartContext.tsx)
-├── hooks/ # Hooks personnalisés (ex: use-toast.ts)
-├── lib/ # Fonctions utilitaires (ex: utils.ts pour cn)
+│ ├── ui/ # Composants Shadcn/ui (Button, Card, etc.)
+│ ├── cart/ # Composants relatifs au panier
+│ ├── checkout/ # Composants pour la page de paiement
+│ ├── contact/ # Composants pour la page de contact
+│ ├── home/ # Composants spécifiques à la page d'accueil
+│ ├── layout/ # Header, Footer
+│ ├── menu/ # Composants pour la page du menu
+│ └── reviews/ # Composants pour les avis
+├── context/ # Contexte React (CartContext.tsx)
+├── hooks/ # Hooks personnalisés (use-toast.ts)
+├── lib/ # Fonctions utilitaires (utils.ts pour cn)
 ├── public/ # Fichiers statiques (images, logos)
-│ ├── images/
-│ └── logo/
-├── types/ # Définitions TypeScript (ex: menu.ts)
-├── .eslintrc.json # Configuration ESLint
+├── types/ # Définitions TypeScript (menu.ts)
+├── .env.local.example # Exemple de fichier pour les variables d'environnement
 ├── next.config.js # Configuration Next.js
-├── package.json # Dépendances et scripts du projet
-├── postcss.config.js # Configuration PostCSS (pour Tailwind)
+├── package.json # Dépendances et scripts
 ├── tailwind.config.js # Configuration Tailwind CSS
-├── tsconfig.json # Configuration TypeScript
-└── README.md # Ce fichier
+└── tsconfig.json # Configuration TypeScript
 
 ## Pages Principales (Routes)
 
 *   `/` (`app/page.tsx`): Page d'accueil.
-*   `/menu` (`app/menu/page.tsx`): Affiche le menu complet des pizzas et autres produits, avec filtrage par catégories.
-*   `/checkout` (`app/checkout/page.tsx`): Page pour finaliser la commande.
-*   `/avis` (`app/avis/page.tsx`): Affiche les avis des clients via un widget Google Reviews.
-*   `/contact` (`app/contact/page.tsx`): Contient les informations de contact de la pizzeria et une carte.
-*   `/mentions-legales` (`app/mentions-legales/page.tsx`): Page des mentions légales.
+*   `/menu` (`app/menu/page.tsx`): Catalogue des produits.
+*   `/checkout` (`app/checkout/page.tsx`): Page de finalisation de commande.
+*   `/avis` (`app/avis/page.tsx`): Page des avis clients.
+*   `/contact` (`app/contact/page.tsx`): Informations de contact.
+*   `/mentions-legales` (`app/mentions-legales/page.tsx`): Mentions légales.
 
-## Composants Clés
+## Composants Notables
 
-*   **`app/layout.tsx`**: Définit la structure HTML de base, inclut les polices, le `ThemeProvider`, le `CartProvider`, le `Header`, le `Footer` et le `Toaster` pour les notifications.
-*   **`components/layout/Header.tsx`**: Barre de navigation principale, responsive, avec gestion du scroll.
-*   **`components/layout/Footer.tsx`**: Pied de page avec liens utiles, informations de contact et horaires.
-*   **`components/cart/Cart.tsx`**: Panneau latéral affichant le contenu du panier, permettant la modification et la redirection vers le checkout.
-*   **`context/CartContext.tsx`**: Fournit l'état global du panier et les fonctions pour le manipuler (ajout, suppression, modification de quantité, calcul du total). Les données du panier sont persistées dans `localStorage`.
-*   **`components/checkout/CheckoutForm.tsx`**: Formulaire de commande avec validation Zod et React Hook Form. Simule une soumission de commande.
-*   **`components/checkout/OrderSummary.tsx`**: Affiche le récapitulatif des articles de la commande sur la page de checkout.
-*   **`components/reviews/AvisGoogle.tsx`**: Intègre le widget Elfsight pour afficher les avis Google.
-*   **`components/home/*`**: Divers composants modulaires pour construire la page d'accueil (Hero, HomeOffers, SpecialOffers, Categories, Delivery, FeaturedMenu, CTA).
-*   **`components/ui/*`**: Bibliothèque de composants Shadcn/ui utilisés à travers l'application (Button, Card, Input, Dialog, Toast, etc.).
+*   **`app/layout.tsx`**: Structure de base incluant `ThemeProvider`, `CartProvider`, `Header`, `Footer`, `Toaster`.
+*   **`components/cart/Cart.tsx`**: Panneau latéral du panier avec gestion des articles.
+*   **`context/CartContext.tsx`**: Logique centrale du panier d'achat avec persistance `localStorage`.
+*   **`components/checkout/CheckoutForm.tsx`**: Formulaire de commande avec validation client-side.
+*   **`components/reviews/AvisGoogle.tsx`**: Intégration du script Elfsight.
+*   **Shadcn/ui components (`components/ui/*`)**: Utilisation extensive pour une UI cohérente et accessible.
 
-## Installation et Lancement
+## Prérequis
 
-1.  **Cloner le dépôt** (si applicable) ou décompresser l'archive du projet.
-2.  **Naviguer dans le répertoire du projet**:
+*   Node.js (version 18.x ou supérieure recommandée)
+*   npm ou yarn
+
+## Installation
+
+1.  Clonez le dépôt :
     ```bash
-    cd chemin/vers/pizza-maquette-copie
+    git clone https://github.com/votre-nom-utilisateur/o-humm-pizza.git
+    cd o-humm-pizza
     ```
-3.  **Installer les dépendances**:
+2.  Installez les dépendances :
     ```bash
     npm install
     # ou
     yarn install
     ```
-4.  **Variables d'environnement** (si nécessaire):
-    Si des clés API ou des configurations spécifiques sont requises (par exemple pour Elfsight si l'ID du widget doit être configurable), créer un fichier `.env.local` à la racine du projet et y ajouter les variables nécessaires.
-    Exemple:
-    ```env
-    NEXT_PUBLIC_ELFSIGHT_WIDGET_ID=d5d9de0a-d7b2-40dd-bbb9-46ef97ce01e4
-    ```
-    (Actuellement, l'ID du widget Elfsight est codé en dur dans `AvisGoogle.tsx`).
-5.  **Lancer le serveur de développement**:
+3.  (Optionnel) Copiez le fichier d'exemple pour les variables d'environnement :
     ```bash
-    npm run dev
-    # ou
-    yarn dev
+    cp .env.local.example .env.local
     ```
-    L'application sera accessible à l'adresse `http://localhost:3000`.
+    Modifiez `.env.local` si nécessaire (actuellement, pas de variables critiques pour le fonctionnement de base).
 
-## Déploiement
+## Lancement du Projet
 
-Le site est configuré pour être déployé sur des plateformes comme **Vercel** (mentionné dans les mentions légales comme hébergeur), qui offre une intégration native avec Next.js.
-
-## Points d'Attention & Améliorations Possibles
-
-*   **Données du Menu**: Les données des pizzas dans `app/menu/page.tsx` sont actuellement statiques (codées en dur). Pour une application réelle, elles proviendraient d'une base de données ou d'un CMS via une API.
-*   **Logique de Commande**: Le `CheckoutForm.tsx` simule un appel API (`await new Promise((resolve) => setTimeout(resolve, 2000))`). Une intégration avec un backend réel et une passerelle de paiement serait nécessaire pour des commandes fonctionnelles.
-*   **Gestion des Erreurs**: Améliorer la gestion des erreurs pour les appels API simulés ou futurs appels réels.
-*   **Tests**: Ajouter des tests unitaires et d'intégration.
-*   **Optimisation des Images**: Bien que `next/image` soit utilisé, s'assurer que toutes les images sont optimisées pour le web. Les images actuelles semblent provenir d'un dossier `public/images/`.
-*   **Internationalisation (i18n)**: Si la pizzeria sert une clientèle multilingue.
-*   **Accessibilité (a11y)**: Vérifier et améliorer l'accessibilité pour tous les utilisateurs.
-*   **Backend/CMS**: Pour une gestion dynamique du contenu (menu, offres, etc.), un backend ou un CMS serait nécessaire.
-*   **Authentification Utilisateur**: Pour suivre l'historique des commandes, sauvegarder les adresses, etc.
-*   **Suivi de Commande en Temps Réel**: Une fonctionnalité avancée pour les clients.
-
-## Pour le Client
-
-Ce README fournit une vue d'ensemble technique du projet "O'Humm Pizza". Il détaille les fonctionnalités implémentées, les technologies utilisées et la structure du code.
-
-Le site est conçu pour être facilement maintenable et extensible. Les composants sont modulaires, et l'utilisation de Tailwind CSS et Shadcn/ui permet une personnalisation aisée de l'apparence.
-
-Les données actuelles du menu et le processus de commande sont des maquettes fonctionnelles. Pour une mise en production complète avec prise de commandes réelles, des développements backend supplémentaires seront nécessaires.
-
-N'hésitez pas à nous contacter pour toute question, demande de modification ou discussion sur les prochaines étapes de développement.
+Pour démarrer le serveur de développement :
+```bash
+npm run dev
+# ou
+yarn dev
 IGNORE_WHEN_COPYING_START
 content_copy
 download
 Use code with caution.
 IGNORE_WHEN_COPYING_END
+
+Ouvrez http://localhost:3000 dans votre navigateur.
+
+Variables d'Environnement
+
+Actuellement, l'ID du widget Elfsight est codé en dur dans components/reviews/AvisGoogle.tsx. Si vous souhaitez le rendre configurable :
+
+Ajoutez dans .env.local:
+
+NEXT_PUBLIC_ELFSIGHT_WIDGET_ID=votre_id_widget_elfsight
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Env
+IGNORE_WHEN_COPYING_END
+
+Modifiez AvisGoogle.tsx pour utiliser process.env.NEXT_PUBLIC_ELFSIGHT_WIDGET_ID.
+
+Déploiement
+
+Ce projet est optimisé pour un déploiement sur des plateformes comme Vercel, qui s'intègrent nativement avec Next.js.
+
+
+
